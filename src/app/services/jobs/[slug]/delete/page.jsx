@@ -1,0 +1,1 @@
+// will respond to a server action of deleting complete a job which will be made in the actions

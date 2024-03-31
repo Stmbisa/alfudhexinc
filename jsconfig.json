@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"] /*Thia refers to the src directory*/
+    }
+  }
+}
