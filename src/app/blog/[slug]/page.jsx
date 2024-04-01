@@ -8,7 +8,7 @@ import { getPost } from "@/lib/data";
 const getData = async (slug) => {
   // to replace from .env file
   // const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
-  const res = await fetch(`{process.env.DOMAIN}/api/blog/${slug}`);
+  const res = await fetch(`${process.env.DOMAIN}/api/blog/${slug}`);
 
   if (!res.ok) {
     throw new Error("Something went wrong");

@@ -85,9 +85,9 @@ export const deleteUser = async (formData) => {
   }
 };
 
-export const handleGithubLogin = async () => {
+export const handleGoogleLogin = async () => {
   "use server";
-  await signIn("github");
+  await signIn("google");
 };
 
 export const handleLogout = async () => {
@@ -157,6 +157,64 @@ export const getJobs = async () => {
       .populate('category')
       .populate('bookedBy', 'username');
     return allJobs;
+  } catch (err) {
+    console.log(err);
+    return { error: "Something went wrong!" };
+  }
+};
+
+
+export const deleteJob = async (prevState, formData) => {
+  const { id } = Object.fromEntries(formData);
+
+  try {
+    connectToDb();
+
+    const deletedJob = await Job.findByIdAndDelete(id);
+    await JobTracking.deleteOne({ jobId: deletedJob._id });
+
+    revalidatePath("/admin"); // Revalidate the admin page
+    return "Job deleted successfully";
+  } catch (err) {
+    console.log(err);
+    return { error: "Something went wrong!" };
+  }
+};
+
+
+export const getAllShippingRequests = async (filters = {}) => {
+  try {
+    connectToDb();
+
+    // Apply filtering
+    let filterQuery = {};
+    if (filters.status) {
+      filterQuery.status = filters.status;
+    }
+    if (filters.userId) {
+      filterQuery.userId = filters.userId;
+    }
+
+    const shippingRequests = await Shipping.find(filterQuery)
+      .populate('packageType');
+
+    return shippingRequests;
+  } catch (err) {
+    console.log(err);
+    return { error: "Something went wrong!" };
+  }
+};
+
+export const deleteShippingRequest = async (formData) => {
+  const { id } = Object.fromEntries(formData);
+
+  try {
+    connectToDb();
+
+    await Shipping.findByIdAndDelete(id);
+
+    revalidatePath("/admin"); // Update the admin page
+    return "Shipping request deleted successfully";
   } catch (err) {
     console.log(err);
     return { error: "Something went wrong!" };

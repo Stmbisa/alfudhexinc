@@ -196,7 +196,12 @@ const shippingSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: true
-  }
+  },
+  status: {
+    type: String,
+    enum: ['Pending', 'In Progress', 'Delivered'], // Limit to specific statuses
+    default: 'Pending',
+  },
 }, { timestamps: true });
 
 

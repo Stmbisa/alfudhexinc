@@ -1,10 +1,12 @@
 import NextAuth from "next-auth";
-import GitHub from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDb } from "./utils";
 import { User } from "./models";
 import bcrypt from "bcryptjs";
 import { authConfig } from "./auth.config";
+// import { unstable_getServerSession } from "next-auth/next";
+
 
 const login = async (credentials) => {
   try {
@@ -27,6 +29,22 @@ const login = async (credentials) => {
   }
 };
 
+
+// export const getServerSession = async () => {
+//   return await unstable_getServerSession(authOptions);
+// };
+
+
+// export const getUserIdFromRequest = async (request) => {
+//   const session = await getServerSession(request.req, request.res);
+//   return session?.user.id;
+// };
+export const getUserIdFromRequest = async (request) => {
+  const session = await session({ req });
+  return session?.user.id;
+};
+
+
 export const {
   handlers: { GET, POST },
   auth,
@@ -35,9 +53,9 @@ export const {
 } = NextAuth({
   ...authConfig,
   providers: [
-    GitHub({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
     CredentialsProvider({
       async authorize(credentials) {
@@ -52,26 +70,26 @@ export const {
   ],
   callbacks: {
     async signIn({ user, account, profile }) {
-      if (account.provider === "github") {
+      if (account.provider === "google") {
         connectToDb();
         try {
-          const user = await User.findOne({ email: profile.email });
+          let user = await User.findOne({ email: profile.email });
 
           if (!user) {
-            const newUser = new User({
-              username: profile.login,
+            user = new User({
+              username: profile.name, // Will change this soon
               email: profile.email,
-              image: profile.avatar_url,
+              image: profile.picture,
             });
-
-            await newUser.save();
+            await user.save();
           }
+          return true; // Allow sign-in
         } catch (err) {
           console.log(err);
           return false;
         }
       }
-      return true;
+      return true; // Allow sign-in for other providers
     },
     ...authConfig.callbacks,
   },
