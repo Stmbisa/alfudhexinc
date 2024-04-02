@@ -1,8 +1,9 @@
 import { getUserIdFromRequest } from '@/lib/auth';
 import { Job, JobTracking } from '@/lib/models';
 import { connectToDb } from '@/lib/utils';
+import middleware from '@/lib/middleware'
 
-export const POST = async (request, { params }) => {
+export const POST = middleware(async (request, { params }) => {
     const { slug } = params;
 
     try {
@@ -38,4 +39,4 @@ export const POST = async (request, { params }) => {
       console.log(err);
       throw new Error("Failed to book job!");
     }
-  };
+  });

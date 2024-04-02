@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { Job, JobTracking } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { NextResponse } from "next/server";
-import middleware from '@/lib/middleware';
+import jobMiddleware from '@/lib/jobMiddleware';
 
 export const GET = async (request, { params }) => {
   const { slug } = params;
@@ -26,7 +26,7 @@ export const GET = async (request, { params }) => {
 };
 
 
-export const PUT = middleware(async (request, { params }) => {
+export const PUT = jobMiddleware(async (request, { params }) => {
   const { slug } = params;
 
   try {
@@ -60,7 +60,7 @@ export const PUT = middleware(async (request, { params }) => {
 
 
 
-export const DELETE = middleware(async (request, { params }) => {
+export const DELETE = jobMiddleware(async (request, { params }) => {
   const { slug } = params;
 
   try {

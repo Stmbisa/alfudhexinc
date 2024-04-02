@@ -1,6 +1,7 @@
 import { Job, JobTracking } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { NextResponse } from "next/server";
+import middleware from "@lib/middleware";
 
 export const GET = async (request) => {
   try {
@@ -19,7 +20,7 @@ export const GET = async (request) => {
   }
 };
 
-export const POST = async (request) => {
+export const POST = middleware(async (request) => {
   try {
     connectToDb();
 
@@ -39,7 +40,8 @@ export const POST = async (request) => {
     // Create initial entry into job tracking
     await JobTracking.create({
       jobId: newJob._id,
-      bookedBy: userId // Initially booked by the creator
+      bookedBy: userId // Initially booked by the creator,
+      // will make sure this line doesnt cause errors of already booked
     });
 
     return NextResponse.json(newJob);
@@ -47,4 +49,4 @@ export const POST = async (request) => {
     console.log(err);
     throw new Error("Failed to create job!");
   }
-};
+});

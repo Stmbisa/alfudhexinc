@@ -215,6 +215,10 @@ const translationSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  contact: {
+    type: String,
+    required: true
+  },
   spokenLanguage: {
     type: String,
     required: true

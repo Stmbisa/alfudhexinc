@@ -1,8 +1,9 @@
 import { Job, JobTracking } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { NextResponse } from "next/server";
+import jobMiddleware from '@/lib/jobMiddleware'
 
-export const POST = async (request, { params }) => {
+export const POST = jobMiddleware(async (request, { params }) => {
   const { slug } = params;
 
   try {
@@ -28,4 +29,4 @@ export const POST = async (request, { params }) => {
     console.log(err);
     throw new Error("Failed to update job tracking!");
   }
-};
+});

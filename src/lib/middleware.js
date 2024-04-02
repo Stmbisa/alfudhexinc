@@ -1,68 +1,37 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Job, JobTracking, User } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
-import { getUserIdFromRequest } from "./auth";
+import { getUserIdFromRequest } from "@/lib/auth";
+import { User } from "./models";
 
 export async function middleware(request) {
-  const { pathname, nextUrl: url, method } = request;
-  const slug = pathname.split('/')[2]; // in case like routes like /jobs/[slug]
+  const { pathname, method } = request;
 
-  // Connect to the database
-  connectToDb();
+  // protecting POST, PUT, DELETE routes
+  if (method === 'POST' || method === 'PUT' || method === 'DELETE') {
+    // 1. Connect to your database
+    connectToDb();
 
-  // Get user from request headers
-  const userId = getUserIdFromRequest(request);
-
-  // Find the relevant job
-  const job = await Job.findOne({ slug });
-  if (!job) {
-    return NextResponse.redirect(url.origin); // Redirect on job not found
-  }
-
-  // Access Control
-  if (
-    method === 'PUT' ||
-    method === 'DELETE' ||
-    pathname.startsWith('/api/jobs/[slug]/track')
-  ) {
-    if (job.userId !== userId && !bookedOrOwner(job, userId)) {
-      return NextResponse.redirect(url.origin); // Redirect on unauthorized access
+    // 2. Check if the user is authenticated
+    const userId = getUserIdFromRequest(request);
+    if (!userId) {
+        return NextResponse.redirect(new URL('/login', request.url));
     }
+
+    // 3. (Optional but recommended) Fetch user details for role-based authorization
+    const user = await User.findById(userId);
+
+    // 3.1 (Optional) Check for admin role
+    if (!user.isAdmin && requiresAdmin(pathname)) {
+      return NextResponse.json({ message: 'Unauthorized access' }, { status: 401 });
+    }
+
   }
-
-  return NextResponse.next(); // Proceed if authorized
-}
-
-// Helper function to check if a user booked or created the job
-export async function bookedOrOwner(job, userId) {
-  const jobTracking = await JobTracking.findOne({ jobId: job._id });
-  return jobTracking && jobTracking.bookedBy === userId;
+  return NextResponse.next();
 }
 
 
-
-export async function middleware(request) {
-    const { pathname, method } = request;
-
-    //  protecting POST routes
-    if (method === 'POST') {
-      connectToDb();
-
-      // 2. Perform authorization checks.
-
-      // 2.1 Check if the user is authenticated
-      const userId = getUserIdFromRequest(request);
-      if (!userId) {
-          return NextResponse.redirect(new URL('/login', request.url)); // Redirect to login on failure
-      }
-
-      // 2.2 (Optional) Check for specific roles
-      const user = await User.findById(userId);
-      if (!user.isAdmin) {
-        return NextResponse.json({ message: 'Unauthorized access' }, { status: 401 });
-      }
-
-    }
-
-    return NextResponse.next();
-  }
+// Helper function to determine admin-only routes
+function requiresAdmin(pathname) {
+  // Implement your logic to identify admin-restricted routes
+  return pathname.startsWith('/api/admin') //|| ... ;
+}
