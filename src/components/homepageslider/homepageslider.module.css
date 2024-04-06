@@ -39,7 +39,9 @@
 
   .imgContainer {
     flex: 1;
-    position: relative;
+    position: relative; /* Needed for 'fill' to work correctly */
+    width: 100%; /* Full width of the slide */
+    height: 100%; /* Full height of the slide */
   }
 
   @media (max-width: 1024px) {
@@ -62,4 +64,43 @@
       width: 100%;
     }
   }
+
+/* styles for buttons on smaller screens */
+.prevBtn,
+.nextBtn {
+  position: absolute; /* Position relative to their container */
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.prevBtn {
+  left: 20px;
+}
+
+.nextBtn {
+  right: 20px;
+}
+
+/* styles for buttons on larger screens (e.g., above 1024px) */
+@media (min-width: 1024px) {
+  .nextBtn {
+    right: 50px; /* Move the button further from the right edge */
+    padding: 15px 25px; /* Make the button bigger */
+    font-size: 20px; /* Increase the font size */
+    border-radius: 8px; /* Add slightly rounded corners */
+  }
+}
+  .sliderContainer {
+    overflow: hidden; /* Hide slides that are off-screen */
+    position: relative; /* This positions the slider container relatively */
+    width: 100%; /* Full width of the parent container */
+    height: 500px; /* Adjust the height as needed */
+  }
+
 

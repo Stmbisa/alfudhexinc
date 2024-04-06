@@ -6,6 +6,10 @@
   --btn: #3673fd;
 }
 
+body {
+  font-family: 'Arial', sans-serif; /*to experiment with this font */
+}
+
 * {
   margin: 0;
   padding: 0;

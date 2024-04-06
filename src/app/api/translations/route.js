@@ -28,9 +28,9 @@ export const GET = async (request) => {
       connectToDb();
 
       // Get data from request body
-      const { originLanguage, currentLocation, contact, spokenLanguage, targetLanguage, story, userId } = JSON.parse(request.body);
+      const { originLanguage, currentLocation, contact, spokenLanguage, targetLanguage, story } = JSON.parse(request.body);
         // i may ad
-
+      const userId = getUserIdFromRequest(request);
       const newTranslation = await Translation.create({
         originLanguage,
         currentLocation,
@@ -47,3 +47,5 @@ export const GET = async (request) => {
         throw new Error("Failed to create Trnslation service!");
     }
   });
+
+

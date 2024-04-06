@@ -39,7 +39,7 @@ export const getPost = async (slug) => {
 };
 
 export const getUser = async (id) => {
-  // noStore();
+  noStore();
   try {
     connectToDb();
     const user = await User.findById(id);
