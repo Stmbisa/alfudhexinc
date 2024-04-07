@@ -22,13 +22,13 @@ const HomeSlider = () => {
       title: 'Send a package globally with us',
       description: '<b>Are you trying to send/receive a package in/from Africa, Europe?  </b><br />' +
       'We can helpyou send any package anywhere at a very affordabale price',
-      image: '/hero.gif',
+      image: '/shipping.jpg',
       buttons: [
         { label: 'Learn More', href: '/services/shipping' },
         { label: 'send package', href: '/services/shipping/send' },
       ],
     },
-    
+
   ];
 
   useEffect(() => {
@@ -50,11 +50,16 @@ const HomeSlider = () => {
   return (
     <div className={styles.sliderContainer}>
       {slideData.map((slide, index) => (
-        <Slide key={index} slideData={slide} isActive={activeSlide === index} />
+        <Slide
+          key={index}
+          slideData={slide}
+          isActive={activeSlide === index}
+          className={`${styles.slide} ${activeSlide === index ? styles.active : ''}`}
+        />
       ))}
-      {/* Add slider controls (prev/next buttons) */}
-      <button className={styles.prevBtn} onClick={prevSlide}>{'<'}</button>
-      <button className={styles.nextBtn} onClick={nextSlide}>{'>'}</button>
+      {/* Slider controls */}
+      <button className={styles.prevBtn} onClick={prevSlide}>{"\u003C"}</button>
+      <button className={styles.nextBtn} onClick={nextSlide}>{"\u003E"}</button>
     </div>
   );
 };

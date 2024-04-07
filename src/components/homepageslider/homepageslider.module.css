@@ -1,70 +1,3 @@
-.container {
-    display: flex;
-    gap: 100px;
-  }
-
-  .textContainer {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-  }
-
-  .title{
-    font-size: 96px;
-  }
-
-  .desc{
-    font-size: 20px;
-  }
-
-  .buttons{
-    display: flex;
-    gap: 20px;
-  }
-
-  .button{
-    padding: 20px;
-    min-width: 120px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-  }
-
-  .button:first-child{
-    background-color: var(--btn);
-    color: var(--text);
-  }
-
-
-  .imgContainer {
-    flex: 1;
-    position: relative; /* Needed for 'fill' to work correctly */
-    width: 100%; /* Full width of the slide */
-    height: 100%; /* Full height of the slide */
-  }
-
-  @media (max-width: 1024px) {
-    .container {
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .buttons{
-      justify-content: center;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .title {
-      font-size: 64px;
-    }
-
-    .brands{
-      width: 100%;
-    }
-  }
-
 /* styles for buttons on smaller screens */
 .prevBtn,
 .nextBtn {
@@ -87,7 +20,7 @@
   right: 20px;
 }
 
-/* styles for buttons on larger screens (e.g., above 1024px) */
+/* styles for buttons on larger screens (like those above 1024px) */
 @media (min-width: 1024px) {
   .nextBtn {
     right: 50px; /* Move the button further from the right edge */
@@ -96,11 +29,26 @@
     border-radius: 8px; /* Add slightly rounded corners */
   }
 }
-  .sliderContainer {
-    overflow: hidden; /* Hide slides that are off-screen */
-    position: relative; /* This positions the slider container relatively */
-    width: 100%; /* Full width of the parent container */
-    height: 500px; /* Adjust the height as needed */
-  }
+.sliderContainer {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 500px;
+}
 
+
+
+.slide {
+  display: none;
+  position: absolute; /* Position slides absolutely within the container */
+  top: 0;
+  left: 100%; /* Start off-screen to the right */
+  width: 100%;
+  height: 100%;
+  transition: left 0.5s ease-in-out; /* Animate the left property */
+}
+
+.slide.active {
+  left: 0; /* Active slide should be in view */
+}
 

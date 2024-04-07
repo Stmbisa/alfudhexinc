@@ -8,7 +8,7 @@ const Slide = ({ slideData }) => {
     <div className={styles.slide}>
       <div className={styles.content}>
         <h2 className={styles.title}>{slideData.title}</h2>
-        <p className={styles.description}>{slideData.description}</p>
+        <p className={styles.description} dangerouslySetInnerHTML={{ __html: slideData.description }}></p>
         <div className={styles.actions}>
           {slideData.buttons.map((button, index) => (
             <Link href={button.href} key={index}>
@@ -19,16 +19,17 @@ const Slide = ({ slideData }) => {
       </div>
       <div className={styles.imageContainer}>
       <Image
-            src={slideData.image}
-            alt={slideData.title}
-            fill // To eplace layout="fill" isee if the error goes
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-            style={{ objectFit: "cover" }} // This replaces objectFit="cover" for next 13
-            priority={true}
-            onError={(e) => {
-                e.target.src = '/noavatar.png';
-            }}
-        />
+        src={slideData.image}
+        alt={slideData.title}
+        fill
+        className={styles.imgContainer}
+        style={{ objectFit: "cover" }}
+        priority={true}
+        onError={(e) => {
+            e.target.src = '/noavatar.png';
+            console.error('Image failed to load:', e); // Log the error
+      }}
+/>
       </div>
     </div>
   );

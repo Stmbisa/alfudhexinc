@@ -1,9 +1,17 @@
+/* .slide { */
+    /* position: relative; Contains absolute image */
+    /* gap: 50px; to experiment and djust spacing soon */
+  /* } */
+
+/* If  the image to maintain its aspect ratio and cover the available space */
 .slide {
-    position: relative; /* Contains absolute image */
-    display: flex;
-    align-items: center;
-    gap: 50px; /* to experiment and djust spacing soon */
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Hide any parts of the image that exceed the container */
+  position: relative;
+  gap: 50px;
+}
 
   .content {
     flex: 1;
@@ -35,10 +43,22 @@
 
   .imageContainer {
     flex: 1;
-    position: relative; /* To contain the Image */
-    position: relative; /* Required for 'fill' to work */
+    position: relative;
+    position: relative; /* Required for 'fill' to work ...*/
     width: 100%; /* Full width of the container */
-    height: 500px; /* Define a specific height for the container */
+    height: 100%; /* Define a specific height for the container */
+  }
+
+  @media (max-width: 768px) {
+    .imgContainer{
+      size: 100vw;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .imgContainer{
+      size: 50vw, 25vw;
+    }
   }
 
   @media (max-width: 1024px) {
@@ -50,13 +70,4 @@
     .actions {
       justify-content: center;
     }
-  }
-
-
-  /* If  the image to maintain its aspect ratio and cover the available space */
-  .slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* Hide any parts of the image that exceed the container */
   }
