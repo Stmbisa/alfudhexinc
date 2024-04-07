@@ -1,11 +1,13 @@
-import Image from "next/image";
-import HomePageSlider from '@/components/homepageslider/HomePageSlider';
+
+import React from 'react';
+import Slider from '@/components/Slider/Slider';
+
 
 const Home = () => {
   return (
-    <HomePageSlider/>
-    // below will contain a component to list all jobs listed,
-    // a component for some blogs latests,
+    <main className="home-container">
+      <Slider />
+    </main>
   );
 };
 

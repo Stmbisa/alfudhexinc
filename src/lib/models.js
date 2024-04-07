@@ -119,7 +119,7 @@ jobSchema.pre('validate', function(next) { // Use 'validate' to generate slug be
   if (this.isNew) { // Only generate a slug for new jobs
     let generatedSlug = this.title.toLowerCase().replace(/ /g, '-'); // Basic slugification
 
-    // Ensure uniqueness by appending a suffix if needed
+    // Ensure uniqueness by appending a suffix
     const checkSlug = async (slug) => {
       const existing = await Job.findOne({ slug });
       if (existing) {

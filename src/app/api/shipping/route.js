@@ -1,7 +1,7 @@
 import { Shipping } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { NextResponse } from "next/server";
-import middleware from '@/lib/middleware' // Your middleware
+import middleware from '@/lib/middleware'
 
 export const POST = middleware(async (request) => { // Authenticated routes
   try {
@@ -31,7 +31,7 @@ export const GET = async (request) => {
 
       const query = request.searchParams; // Access query parameters
 
-      // Filtering 
+      // Filtering
       const filters = {};
       if (query.get('status')) {
         filters.status = query.get('status');

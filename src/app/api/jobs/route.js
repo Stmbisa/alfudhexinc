@@ -7,7 +7,7 @@ export const GET = async (request) => {
   try {
     connectToDb();
 
-    // Add filtering/pagination options here if needed
+    // will add filtering/pagination options here later
 
     const jobs = await Job.find()
       .populate('category') // Include associated category data
