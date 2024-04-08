@@ -42,6 +42,18 @@ export const images = [
       ],
     },
 
+    {
+      id: 3,
+      src: '/author.png',
+      title: 'Story telling',
+      desc: stripHtmlTags('<h3>Do you have an inspiring story you want the world to know? </h3><br />We help the asylym seeker tell their stories and inspire the world  '),
+      buttons: [
+        { label: 'Browse more', href: '/services/translation' },
+        { label: 'Post a request', href: '/services/translation/request' },
+        { label: 'contact', href: '/contact' },
+      ],
+    },
+
   ];
 
 export default images;

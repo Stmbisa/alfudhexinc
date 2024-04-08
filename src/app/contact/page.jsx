@@ -1,42 +1,61 @@
-// "use client";
-import Image from "next/image";
-import styles from "./contact.module.css";
-// import dynamic from "next/dynamic";
-// import HydrationTest from "@/components/hydrationTest";
+'use client'
+import styles from './contact.module.css'
+import Image from 'next/image';
 
-// const HydrationTestNoSSR = dynamic(()=>import("@/components/hydrationTest"), {ssr: false})
 
-export const metadata = {
-  title: "Contact Page ",
-  description: "if you have any question for Alfundex on how our services work please use this",
-};
 
 const ContactPage = () => {
-  // const a = Math.random();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const phone = formData.get('phone');
+    const message = formData.get('message');
 
-  // console.log(a);
-  // !!!!!! to make this form work
+    const mailData = {
+      subject: `New message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`,
+      html: `
+        <h3>New message from ${name}</h3>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Message:</strong> ${message}</p>
+      `,
+    };
+
+    try {
+      const response = await fetch('/api/sendMail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(mailData),
+      });
+
+      if (response.ok) {
+        alert('Message sent successfully!');
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Error sending message. Please try again.');
+    }
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
-        <Image src="/contact.png" alt="" fill className={styles.img} />
+        <Image src="/contact.jpg" alt="" fill className={styles.img} />
       </div>
       <div className={styles.formContainer}>
-        {/* <HydrationTestNoSSR/> */}
-        {/* <div suppressHydrationWarning>{a}</div> */}
-        <form action="" className={styles.form}>
-          <input type="text" placeholder="Name and Surname" />
-          <input type="text" placeholder="Email Address" />
-          <input type="text" placeholder="Phone Number (Optional)" />
-          <textarea
-            name=""
-            id=""
-            cols="30"
-            rows="10"
-            placeholder="Message"
-          ></textarea>
-          <button>Send</button>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <input type="text" placeholder="Name and Surname" name="name" required />
+          <input type="email" placeholder="Email Address" name="email" required />
+          <input type="text" placeholder="Phone Number (Optional)" name="phone" />
+          <textarea name="message" cols="30" rows="10" placeholder="Message" required></textarea>
+          <button type="submit">Send</button>
         </form>
       </div>
     </div>

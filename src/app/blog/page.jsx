@@ -25,7 +25,7 @@ const BlogPage = async () => {
     <div className={styles.container}>
       {posts.map((post) => (
         <div className={styles.post} key={post.id}>
-          <PostCard post={post} />
+          <PostCard post={post} key={post.id} />
         </div>
       ))}
     </div>

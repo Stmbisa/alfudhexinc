@@ -1,7 +1,7 @@
+import { middleware } from "@/lib/middleware";
 import { Job, JobTracking } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { NextResponse } from "next/server";
-import middleware from "@lib/middleware";
 
 export const GET = async (request) => {
   try {

@@ -1,4 +1,6 @@
 import mongoose from "mongoose"
+const nodemailer = require('nodemailer');
+// import nodemailer from 'nodemailer';
 
 const connection = {};
 
@@ -15,3 +17,4 @@ export const connectToDb = async () => {
     throw new Error(error);
   }
 };
+
