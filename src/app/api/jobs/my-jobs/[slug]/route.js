@@ -1,3 +1,4 @@
+// api/jobs/my-jobs/[slug]/route.js,
 import { NextResponse, NextRequest } from "next/server";
 import { Job, JobTracking } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
@@ -17,7 +18,10 @@ export const GET = async (request, { params }) => {
       return NextResponse.json({ error: 'Job not found' }, { status: 404 });
     }
 
-    return NextResponse.json(job);
+    const category = job.category ? job.category : null;
+    const bookedBy = job.bookedBy ? job.bookedBy.username : null;
+
+    return NextResponse.json({ job, category, bookedBy });
   } catch (err) {
     console.log(err);
     throw new Error("Failed to fetch job!");
