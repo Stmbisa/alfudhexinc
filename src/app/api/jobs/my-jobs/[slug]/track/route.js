@@ -2,6 +2,7 @@ import { Job, JobTracking } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { NextResponse } from "next/server";
 import jobMiddleware from '@/lib/jobMiddleware'
+import { getUserIdFromRequest } from "@/lib/auth";
 
 export const POST = jobMiddleware(async (request, { params }) => {
   const { slug } = params;

@@ -30,6 +30,6 @@ export default async function middleware(request) {
 
 
 // Helper function to determine admin-only routes
-function requiresAdmin(pathname) {
+export default async function requiresAdmin(pathname) {
   return pathname.startsWith('/api/admin') //|| ... ;
 }
