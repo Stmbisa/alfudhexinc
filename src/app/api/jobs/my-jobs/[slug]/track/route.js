@@ -18,7 +18,7 @@ export const POST = jobMiddleware(async (request, { params }) => {
       return NextResponse.json({ error: 'Job not found' }, { status: 404 });
     }
 
-    const userId = getUserIdFromRequest(request);
+    const userId = await getUserIdFromRequest(request);
     // Update the job tracking entry
     const updatedTracking = await JobTracking.findOneAndUpdate(
       { jobId: job._id },

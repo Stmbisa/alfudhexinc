@@ -4,14 +4,11 @@ import { connectToDb } from "@/lib/utils";
 import { Job } from "@/lib/models";
 
 export const GET = async (request) => {
-  // ... authentication middleware will be considered in the future as in jobs[slug]
-  const userId = getUserIdFromRequest(request);
-
   try {
     connectToDb();
+    const userId = await getUserIdFromRequest(request); // Await the Promise
 
     const myJobs = await Job.find({ userId });
-
     return NextResponse.json(myJobs);
   } catch (err) {
     console.log(err);

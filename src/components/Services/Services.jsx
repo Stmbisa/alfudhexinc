@@ -66,7 +66,7 @@ const Services = () => {
               <div className={styles.labelContainer}>
                 <span className={styles.label}>{service.label}</span>
               </div>
-              <Image src={service.src} alt={service.title} />
+              <Image src={service.src} alt={service.title} width={150} height={300}/>
               <h3>{service.title}</h3>
               <p dangerouslySetInnerHTML={{ __html: service.desc }} />
               <div className={styles.buttonContainer}>

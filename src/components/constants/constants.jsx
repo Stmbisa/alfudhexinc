@@ -20,7 +20,7 @@ export const images = [
 
     {
       id: 2,
-      src:  'alfundex.png',
+      src:  '/alfundex.png',
       title: 'We live by expressing unity, solidality love and passion',
       desc: stripHtmlTags('<b>Do you need someone who will hold your hand and treat you like a family? </b><br />' +
       'To day approach and trust us to deliver amazing results,we will coach you, guide you and at then end you will have loved every step. whatever service you need in what we help'),
