@@ -1,7 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { Job, JobTracking } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
-import { NextResponse } from "next/server";
 import jobMiddleware from '@/lib/jobMiddleware';
 
 export const GET = async (request, { params }) => {
