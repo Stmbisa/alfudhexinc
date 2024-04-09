@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { getUserIdFromRequest } from '@/lib/auth';
 import { connectToDb } from "@/lib/utils";
+import { Job } from "@/lib/models";
 
 export const GET = async (request) => {
   // ... authentication middleware will be considered in the future as in jobs[slug]

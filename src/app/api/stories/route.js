@@ -1,28 +1,28 @@
 import { getUserIdFromRequest } from "@/lib/auth";
-import middleware from "@/lib/middleware";
+import { middleware } from "@/lib/middleware";
 import { Story } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { NextResponse } from "next/server";
 
 export const GET = async (request) => {
-    try {
-      connectToDb();
+  try {
+    connectToDb();
 
-      const query = request.searchParams;
-      let filter = {};
-      if (query.get('isPublic') === 'true') {
-        filter.isPublic = true;
-      }
-      if (query.get('userId')) {
-        filter.userId = query.get('userId');
-      }
-
-      const stories = await Story.find(filter);
-      return NextResponse.json(stories);
-    } catch (err) {
-      return err
+    const query = request.searchParams;
+    let filter = {};
+    if (query.get('isPublic') === 'true') {
+      filter.isPublic = true;
     }
-  };
+    if (query.get('userId')) {
+      filter.userId = query.get('userId');
+    }
+
+    const stories = await Story.find(filter);
+    return NextResponse.json(stories);
+  } catch (err) {
+    return err
+  }
+};
 
 
 

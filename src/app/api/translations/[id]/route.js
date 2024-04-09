@@ -1,7 +1,7 @@
 import { Translation } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { NextResponse } from "next/server";
-import { middleware } from '@/lib/middleware';;
+import { middleware } from '@/lib/middleware';
 
 export const PUT = middleware(async (request, { params }) => {
   const { id } = params;
