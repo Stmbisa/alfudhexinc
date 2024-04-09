@@ -1,4 +1,5 @@
 import { getUserIdFromRequest } from "@/lib/auth";
+import middleware from "@/lib/middleware";
 import { Story } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { NextResponse } from "next/server";

@@ -1,10 +1,11 @@
 import { Job, JobTracking } from "./models";
 import { connectToDb } from "./utils";
 import { getUserIdFromRequest } from "./auth";
+import { NextResponse } from "next/server";
 
 
 
-export async function middleware(request) {
+export default async function middleware(request) {
     const { pathname, nextUrl: url, method } = request;
     const slug = pathname.split('/')[2]; // in case like routes like /jobs/[slug]
 

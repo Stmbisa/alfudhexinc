@@ -40,7 +40,7 @@ const login = async (credentials) => {
 //   return session?.user.id;
 // };
 export const getUserIdFromRequest = async (request) => {
-  const session = await session({ req });
+  const session = await session({ request });
   return session?.user.id;
 };
 
