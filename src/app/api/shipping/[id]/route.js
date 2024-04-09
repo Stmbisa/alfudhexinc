@@ -1,7 +1,7 @@
 import { Shipping } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { NextResponse } from "next/server";
-import middleware from '@/lib/middleware';
+import { middleware } from '@/lib/middleware';
 import { getUserIdFromRequest } from "@/lib/auth";
 
 

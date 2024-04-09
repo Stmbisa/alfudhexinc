@@ -1,7 +1,7 @@
 import { getUserIdFromRequest } from '@/lib/auth';
 import { Job, JobTracking } from '@/lib/models';
 import { connectToDb } from '@/lib/utils';
-import middleware from '@/lib/middleware'
+import { middleware } from '@/lib/middleware';
 import { NextResponse } from 'next/server';
 
 export const POST = middleware(async (request, { params }) => {

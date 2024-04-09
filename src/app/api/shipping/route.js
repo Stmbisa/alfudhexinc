@@ -1,7 +1,7 @@
 import { Shipping } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { NextResponse } from "next/server";
-import middleware from '@/lib/middleware'
+import { middleware } from '@/lib/middleware';
 
 export const POST = middleware(async (request) => { // Authenticated routes
   try {
@@ -26,26 +26,26 @@ export const POST = middleware(async (request) => { // Authenticated routes
 
 
 export const GET = async (request) => {
-    try {
-      connectToDb();
+  try {
+    connectToDb();
 
-      const query = request.searchParams; // Access query parameters
+    const query = request.searchParams; // Access query parameters
 
-      // Filtering
-      const filters = {};
-      if (query.get('status')) {
-        filters.status = query.get('status');
-      }
-      if (query.get('userId')) {
-        filters.userId = query.get('userId');
-      }
-
-      const shippingRequests = await Shipping.find(filters)
-        .populate('packageType');
-
-      return NextResponse.json(shippingRequests);
-    } catch (err) {
-      console.log(err);
-      throw new Error("Failed to fetch shipping requests!");
+    // Filtering
+    const filters = {};
+    if (query.get('status')) {
+      filters.status = query.get('status');
     }
-  };
+    if (query.get('userId')) {
+      filters.userId = query.get('userId');
+    }
+
+    const shippingRequests = await Shipping.find(filters)
+      .populate('packageType');
+
+    return NextResponse.json(shippingRequests);
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch shipping requests!");
+  }
+};
