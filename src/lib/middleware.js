@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { connectToDb } from "@/lib/utils";
 import { getUserIdFromRequest } from "@/lib/auth";
 import { User } from "./models";
 
-export async function middleware(request) {
+export default async function middleware(request) {
   const { pathname, method } = request;
 
   // protecting POST, PUT, DELETE routes

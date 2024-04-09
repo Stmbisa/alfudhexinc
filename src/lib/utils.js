@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-const nodemailer = require('nodemailer');
+// const nodemailer = require('nodemailer');
 // import nodemailer from 'nodemailer';
 
 const connection = {};

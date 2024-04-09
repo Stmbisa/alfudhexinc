@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './Services.module.css';
 
 function stripHtmlTags(html) {
@@ -65,7 +66,7 @@ const Services = () => {
               <div className={styles.labelContainer}>
                 <span className={styles.label}>{service.label}</span>
               </div>
-              <img src={service.src} alt={service.title} />
+              <Image src={service.src} alt={service.title} />
               <h3>{service.title}</h3>
               <p dangerouslySetInnerHTML={{ __html: service.desc }} />
               <div className={styles.buttonContainer}>
