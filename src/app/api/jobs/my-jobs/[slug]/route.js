@@ -28,7 +28,7 @@ export const GET = async (request, { params }) => {
 };
 
 
-export const PUT = jobMiddleware(async (request, { params }) => {
+export const PUT = async (request, { params }) => {
   const { slug } = params;
 
   try {
@@ -58,11 +58,11 @@ export const PUT = jobMiddleware(async (request, { params }) => {
     console.log(err);
     throw new Error("Failed to update job!");
   }
-});
+};
 
 
 
-export const DELETE = jobMiddleware(async (request, { params }) => {
+export const DELETE = async (request, { params }) => {
   const { slug } = params;
 
   try {
@@ -82,5 +82,5 @@ export const DELETE = jobMiddleware(async (request, { params }) => {
     console.log(err);
     throw new Error("Failed to delete job!");
   }
-});
+};
 
