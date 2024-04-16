@@ -1,13 +1,25 @@
+import { NextResponse } from "next/server";
 import { Job, JobTracking } from "./models";
 import { connectToDb } from "./utils";
 import { getUserIdFromRequest } from "./auth";
-import { NextResponse } from "next/server";
-
-
 
 export default async function middleware(request) {
-    const { pathname, nextUrl: url, method } = request;
-    const { slug } = params;
+  const { nextUrl: url, method } = request;
+  const slugSegments = url.pathname.split('/').filter(segment => segment !== '');
+
+  let slugIndex = -1;
+  for (let i = 0; i < slugSegments.length; i++) {
+    if (slugSegments[i] === 'track') {
+      slugIndex = i - 1;
+      break;
+    }
+  }
+
+  const slug = slugIndex !== -1 ? slugSegments[slugIndex] : null;
+
+  if (!slug) {
+    return NextResponse.next(); // No slug found, proceed to the next middleware or route handler
+  }
 
     // Connect to the database
     connectToDb();
