@@ -5,7 +5,7 @@ import { getUserIdFromRequest } from "./auth";
 
 export default async function middleware(request, context) {
   const { nextUrl: url, method } = request;
-  const { slug } = context.params || {};
+  const { slug } = context.params || {}; // Add a null check for context.params
 
   // Connect to the database
   connectToDb();
