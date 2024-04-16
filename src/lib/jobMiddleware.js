@@ -3,8 +3,8 @@ import { connectToDb } from "@/lib/utils";
 import { getUserIdFromRequest } from "@/lib/auth";
 import { User, Job, JobTracking } from "./models";
 
-export async function middleware(request) {
-  const { pathname, method } = request;
+export default async function middleware(request) {
+  const { pathname } = request;
 
   // Exclude paths or routes that don't require authentication or authorization
   const isPublicRoute = isPublicPath(pathname);
