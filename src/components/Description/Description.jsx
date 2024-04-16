@@ -9,7 +9,7 @@ import Link from 'next/link';
 const Description = ({ activeImage, clickNext, clickPrev }) => {
   return (
     <div className={styles.descriptionContainer}>
-      <div className={styles.alfundexlabel}>ALFUNDEX</div>
+      <div className={styles.alfundexlabel}>ALFUDEX INC</div>
       {images.map((elem, idx) => (
         <div
           key={idx}

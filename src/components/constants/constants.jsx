@@ -9,7 +9,7 @@ export const images = [
     {
       id: 1,
       src:  '/hero.gif',
-      title: 'Welcome to Alfundex',
+      title: 'Welcome to Alfudex inc',
       desc: stripHtmlTags('<b>Narrative Story chronicles Services for refugies, and Translations services.  </b><br />' +
       'We also Help Businesses and individuals to ship packages, find affordable good people ready to do any job very affordably'),
       buttons: [

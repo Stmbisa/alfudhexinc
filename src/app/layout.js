@@ -8,8 +8,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: {
-    default:"A services marketplace, ",
-    template:"%s |Alfundex"
+    default: "A services marketplace, ",
+    template: "%s |Alfudex "
   },
   description: "This is a one stop point for services and jobs, narrative translation services for refusgies, besides that we also help in shipping and visa services ",
 };
@@ -19,11 +19,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         {/* <ClientSideProviderTest> */}
-          <div className="container">
-            <Navbar />
-            {children}
-            <Footer />
-          </div>
+        <div className="container">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
         {/* </ClientSideProviderTest> */}
       </body>
     </html>

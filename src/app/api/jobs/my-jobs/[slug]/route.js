@@ -1,5 +1,4 @@
-// api/jobs/my-jobs/[slug]/route.js,
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { Job, JobTracking } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import jobMiddleware from '@/lib/jobMiddleware';

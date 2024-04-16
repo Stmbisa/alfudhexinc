@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 
 export default async function middleware(request) {
     const { pathname, nextUrl: url, method } = request;
-    const slug = pathname.split('/')[2]; // in case like routes like /jobs/[slug]
+    const { slug } = params;
 
     // Connect to the database
     connectToDb();
@@ -23,10 +23,8 @@ export default async function middleware(request) {
 
     // Access Control
     if (
-      method === 'POST' ||
-      method === 'PUT' ||
-      method === 'DELETE' ||
-      pathname.startsWith('/api/my-jobs/[slug]/track')
+      ['POST', 'PUT', 'DELETE'].includes(method) ||
+      url.pathname.startsWith('/api/my-jobs/[slug]/track')
     ) {
       if (job.userId !== userId && !bookedOrOwner(job, userId)) {
         return NextResponse.redirect(url.origin); // Redirect on unauthorized access

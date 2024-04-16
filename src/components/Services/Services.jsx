@@ -21,7 +21,7 @@ const images = [
   },
   {
     id: 3,
-    label: 'JOBS',
+    label: 'JOB AGENCY',
     src: '/parcel.png',
     title: 'Get that compound slashed in minutes',
     desc: stripHtmlTags('<h3>Do you want someone to shop for you today? </h3><br />We can help you find someone very quick, very affordable'),
