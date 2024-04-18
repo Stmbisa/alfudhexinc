@@ -5,7 +5,7 @@ const Footer = () => {
     <div className={styles.container}>
       <div className={styles.logo}>Alfudex </div>
       <div className={styles.text}>
-        Alfundex © All rights reserved.
+        Alfudhex © All rights reserved.
       </div>
     </div>
   );

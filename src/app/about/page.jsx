@@ -18,7 +18,7 @@ const AboutPage = () => {
           We create Opportinities refugies, employers that are safer
         </h1>
         <p className={styles.desc}>
-          We are Alfundex a platform that helpes you solve all your immigrations issues at the lowest prices,
+          We are Alfudhex a platform that helpes you solve all your immigrations issues at the lowest prices,
           from hemping you get asylum or visa, to telling your story in the best language possible (narrative chrincles)
           to sending your package anywhere in the world, to finding you a job!
           we have a vast team of consultants.

@@ -16,7 +16,7 @@ const nextConfig = {
   rewrites: () => [
     {
       source: '/api/blog/:path*',
-      destination: 'http://alfundex-3094wxdsr-mbisa-jcs-projects.vercel.app/api/blog/:path*',
+      destination: 'http://alfudhexinc.app/api/blog/:path*',
     },
     {
       source: '/blog/:path*',
@@ -27,7 +27,18 @@ const nextConfig = {
   rewrites: () => [
     {
       source: '/api/blog/:path*',
-      destination: 'http://alfundex-3094wxdsr-mbisa-jcs-projects.vercel.app/api/jobs/:path*',
+      destination: 'http://alfudhexinc.app/api/api/jobs/:path*',
+    },
+    {
+      source: '/blog/:path*',
+      destination: '/blog',
+    },
+  ],
+  output: 'standalone',
+  rewrites: () => [
+    {
+      source: '/api/blog/:path*',
+      destination: 'http://alfudhexinc.app/api/api/jobs/my-jobs/:path*',
     },
     {
       source: '/blog/:path*',
