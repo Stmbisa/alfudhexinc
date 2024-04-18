@@ -9,13 +9,12 @@ import Link from 'next/link';
 const Description = ({ activeImage, clickNext, clickPrev }) => {
   return (
     <div className={styles.descriptionContainer}>
-      <div className={styles.alfundexlabel}>ALFUDEX INC</div>
+      <div className={styles.alfundexlabel}>Alfudhex INC</div>
       {images.map((elem, idx) => (
         <div
           key={idx}
-          className={`${styles.descriptionContent} ${
-            idx === activeImage ? styles.active : styles.hidden
-          }`}
+          className={`${styles.descriptionContent} ${idx === activeImage ? styles.active : styles.hidden
+            }`}
         >
           <div className={styles.descriptionText}>
             <div className={styles.title}>{elem.title}</div>
@@ -23,18 +22,18 @@ const Description = ({ activeImage, clickNext, clickPrev }) => {
           </div>
           <div className={styles.buttonContainer}>
             {elem.buttons.map((button, index) => (
-                <Link href={button.href} key={index}>
-                  <button className={styles.blueButton}>{button.label}</button>
-                </Link>
+              <Link href={button.href} key={index}>
+                <button className={styles.blueButton}>{button.label}</button>
+              </Link>
             ))}
           </div>
 
           <div className={styles.sliderControls}>
             <div className={styles.prevButton} onClick={clickPrev}>
-              <Image src= 'left.svg' alt="" width={24} height={24} />
+              <Image src='left.svg' alt="" width={24} height={24} />
             </div>
             <div className={styles.nextButton} onClick={clickNext}>
-               <Image src='right.svg' alt="" width={24} height={24} />
+              <Image src='right.svg' alt="" width={24} height={24} />
             </div>
           </div>
         </div>

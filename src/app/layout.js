@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: {
     default: "A services marketplace, ",
-    template: "%s |Alfudex "
+    template: "%s |Alfudhex "
   },
   description: "This is a one stop point for services and jobs, narrative translation services for refusgies, besides that we also help in shipping and visa services ",
 };
