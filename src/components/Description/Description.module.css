@@ -4,11 +4,11 @@
   border-top-left-radius: 24px;
   border-bottom-right-radius: 24px;
   border-bottom-left-radius: 24px;
-  padding: 20px;
+  padding: 10px;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 
@@ -58,7 +58,7 @@
   font-size: 16px;
   line-height: 1.5;
   color: #666;
-  max-height: 120px;
+  max-height: 237px;
   overflow: hidden;
 }
 

@@ -23,9 +23,9 @@ export const GET = async (request) => {
 export const POST = middleware(async (request) => {
   try {
     connectToDb();
-
+    const userId = await getUserIdFromRequest(request);
     // Get data from request body (ensure correct shape)
-    const { category, title, description, location, pricePerHour, estimatedHours, userId } = JSON.parse(request.body);
+    const { category, title, description, location, pricePerHour, estimatedHours } = JSON.parse(request.body);
 
     const newJob = await Job.create({
       category,

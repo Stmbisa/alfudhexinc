@@ -1,7 +1,7 @@
 const page = () => {
   return (
     <div>
-        Visas
+        tell your stories
     </div>
   )
 }

@@ -11,7 +11,7 @@ const images = [
     id: 2,
     label: 'SHIPPING',
     src: '/rocket.png',
-    title: 'We help people and companies send package globally ',
+    title: 'We Help People And Companies Send Package Globally ',
     desc: stripHtmlTags('<b>Do you want to send/receive a gift from a beloved one </b><br />We have helped millions of people send packages globally at very low prices'),
     buttons: [
       { label: 'Learn More', href: '/services/shipping' },
@@ -23,11 +23,11 @@ const images = [
     id: 3,
     label: 'JOB AGENCY',
     src: '/parcel.png',
-    title: 'Get that compound slashed in minutes',
+    title: 'Instantly Reach And Attract Top Talent For Any Job',
     desc: stripHtmlTags('<h3>Do you want someone to shop for you today? </h3><br />We can help you find someone very quick, very affordable'),
     buttons: [
       { label: 'Browse jobs', href: '/services/jobs' },
-      { label: 'Post Job', href: '/services/jobs/send' },
+      { label: 'Post Job', href: '/services/jobs/post' },
       { label: 'register', href: '/register' },
     ],
   },
@@ -36,8 +36,8 @@ const images = [
     id: 3,
     label: 'TRANSLATIONS',
     src: '/document.png',
-    title: 'Narrative Translations',
-    desc: stripHtmlTags('<h3>Are you a refugy and want your story told in the best language? </h3><br />We know the language to use to get your story inspiring thus your asylym accepted easily'),
+    title: 'Interpretation/Translations Services',
+    desc: stripHtmlTags('<h3>Are you a refugy and want your story told in the best language? </h3><br />We will make sure that you can always communicate and be heard anywhere, even in the midst of large groups'),
     buttons: [
       { label: 'Browse more', href: '/services/translation' },
       { label: 'Post a request', href: '/services/translation/request' },

@@ -1,0 +1,23 @@
+.homeContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  .subtitle {
+    color: #3673fd;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 54px;
+  }
+
+  .sliderContainer {
+    margin: 0 auto;
+    padding: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .jobPostingContainer {
+
+  }
