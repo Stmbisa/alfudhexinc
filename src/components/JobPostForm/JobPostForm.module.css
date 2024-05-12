@@ -21,6 +21,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    text-align: center;
   }
 
   .label {
@@ -51,4 +52,5 @@
     cursor: pointer;
     align-self: flex-start;
     margin-right: 10rem;
+    margin: 0 auto;
   }

@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import styles from './JobPostForm.module.css';
 
@@ -12,8 +11,8 @@ const JobPostForm = () => {
     pricePerHour: 0,
     estimatedHours: 0,
   });
-
-  const [categories, setCategories] = useState([]); // State to store fetched categories
+  const [categories, setCategories] = useState([]);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -25,7 +24,7 @@ const JobPostForm = () => {
         console.error('Error fetching categories:', error);
       }
     };
-
+    setIsClient(true); // Set isClient to true after initial render
     fetchCategories();
   }, []);
 
@@ -34,48 +33,42 @@ const JobPostForm = () => {
   };
 
   const submitHandler = async (e) => {
-  e.preventDefault();
-
-  const categoryId = e.target.category.value; // Get selected category ID
-
-  try {
-    const response = await fetch(`${process.env.DOMAIN}/api/jobs`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        category: categoryId,
-        title: formData.title,
-        description: formData.description,
-        location: formData.location,
-        pricePerHour: formData.pricePerHour,
-        estimatedHours: formData.estimatedHours,
-      }),
-    });
-
-    if (response.ok) {
-      console.log('Job created successfully');
-      // Handle successful submission (e.g., clear form, redirect)
-    } else {
-      console.error('Failed to create job');
-      // Handle errors (e.g., display error message)
+    e.preventDefault();
+    const categoryId = e.target.category.value;
+    try {
+      const response = await fetch(`${process.env.DOMAIN}/api/jobs`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          category: categoryId,
+          title: formData.title,
+          description: formData.description,
+          location: formData.location,
+          pricePerHour: formData.pricePerHour,
+          estimatedHours: formData.estimatedHours,
+        }),
+      });
+      if (response.ok) {
+        console.log('Job created successfully');
+        // Handle successful submission (e.g., clear form, redirect)
+      } else {
+        console.error('Failed to create job');
+        // Handle errors (e.g., display error message)
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
-  } catch (error) {
-    console.error('Error:', error);
-  }
-};
-
+  };
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Post a New Job</h2>
-      <form onSubmit={submitHandler} className={styles.form}>
-        {/* Render input fields for each job data field */}
-        {/* Example: */}
-
-          {categories.length > 0 && (
-            <div className={styles.formGroup}>
+      <h1 className={styles.heading}>Post a New Job</h1>
+      <div className={styles.formContainer}>
+        <form onSubmit={submitHandler} className={styles.form}>
+          {isClient && categories.length > 0 && (
+            <div>
               <label htmlFor="category" className={styles.label}>
                 category
               </label>
@@ -96,83 +89,68 @@ const JobPostForm = () => {
               </select>
             </div>
           )}
-
-        <div className={styles.formGroup}>
-          <label htmlFor="title" className={styles.label}>
-            Title
-          </label>
+          <div>
+            <label htmlFor="title" className={styles.label}>
+              Title
+            </label>
+            <input
+              type="text"
+              placeholder="Title"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              className={styles.input}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+          <label htmlFor="description" className={styles.label}>Description </label>
           <input
             type="text"
-            id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            className={styles.input}
-            required
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="description" className={styles.label}>
-            description
-          </label>
-          <input
-            type="text"
-            id="description"
+            placeholder="Description"
             name="description"
             value={formData.description}
             onChange={handleChange}
             className={styles.input}
             required
           />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="location" className={styles.label}>
-            location
-          </label>
+          </div>
+
+          <label htmlFor="location" className={styles.label}>Location for the job </label>
           <input
             type="text"
-            id="location"
+            placeholder="Location"
             name="location"
             value={formData.location}
             onChange={handleChange}
             className={styles.input}
             required
           />
-        </div>
-
-        <div className={styles.formGroup}>
-          <label htmlFor="pricePerHour" className={styles.label}>
-            pricePerHour
-          </label>
+          <label htmlFor="pricePerHour" className={styles.label}>Price per Hour </label>
           <input
-            type="text"
-            id="pricePerHour"
+            type="number"
+            placeholder="Price Per Hour"
             name="pricePerHour"
             value={formData.pricePerHour}
             onChange={handleChange}
             className={styles.input}
             required
           />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="estimatedHours" className={styles.label}>
-            estimatedHours
-          </label>
+          <label htmlFor="estimatedHours" className={styles.label}>Estimated Hours </label>
           <input
-            type="text"
-            id="estimatedHours"
+            type="number"
+            placeholder="Estimated Hours"
             name="estimatedHours"
             value={formData.estimatedHours}
             onChange={handleChange}
             className={styles.input}
             required
           />
-        </div>
-        {/* Repeat for other fields */}
-        <button type="submit" className={styles.submitButton}>
-          Submit
-        </button>
-      </form>
+          <button type="submit" className={styles.submitButton}>
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

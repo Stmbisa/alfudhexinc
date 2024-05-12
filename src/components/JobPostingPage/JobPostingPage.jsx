@@ -1,13 +1,28 @@
 'use client';
-import React from 'react';
-import JobPostForm from '../JobPostForm/JobPostForm';
+import React, { useState } from 'react';
 import styles from './JobPostingPage.module.css';
+import dynamic from 'next/dynamic';
+import useCounter from '../useCounter';
+
+const JobPostForm = dynamic(() => import('../JobPostForm/JobPostForm'), {
+  ssr: false,
+});
 
 const JobPostingPage = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const experienceYears = useCounter(0, 4, 3000);
+  const jobsCompleted = useCounter(0, 3000, 5000); // Counts to 3 over 3 seconds
+  const usersReady = useCounter(0, 10000, 10000); // Counts to 150 over 3 seconds
+
   return (
     <div className={styles.container}>
-      <div className={styles.formContainer}>
-        <JobPostForm />
+      <div suppressHydrationWarning className={styles.formContainer}>
+        {isClient && <JobPostForm />}
       </div>
       <div className={styles.textContainer}>
         <h1 className={styles.title}>We help you to focus on what you can do best</h1>
@@ -18,15 +33,15 @@ const JobPostingPage = () => {
         </p>
         <div className={styles.boxes}>
           <div className={styles.box}>
-            <h1>4 +</h1>
+            <h1>{experienceYears} +</h1>
             <p>Years of experience</p>
           </div>
           <div className={styles.box}>
-            <h1>3 K+</h1>
-            <p>Jobs complted of experience</p>
+            <h1>{jobsCompleted} +</h1>
+            <p>Jobs completed</p>
           </div>
           <div className={styles.box}>
-            <h1>10 K+</h1>
+            <h1>{usersReady}+</h1>
             <p>of users ready for Jobs</p>
           </div>
         </div>

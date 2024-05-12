@@ -204,6 +204,12 @@ const shippingSchema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
+// Calculate estimated amount before saving
+shippingSchema.pre('save', function (next) {
+  // A additional logic or calculations here i will add
+  next();
+});
+
 
 
 const translationSchema = new mongoose.Schema({
