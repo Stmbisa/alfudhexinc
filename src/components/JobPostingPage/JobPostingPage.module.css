@@ -59,6 +59,11 @@
       gap: 2rem;
     }
 
+    .boxes {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
     .formContainer {
       width: 100%;
     }

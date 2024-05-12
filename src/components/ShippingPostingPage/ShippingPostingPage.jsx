@@ -25,9 +25,10 @@ const ShippingPostingPage = () => {
             <div className={styles.textContainer}>
                 <h1 className={styles.title}>We help you to ship your packages safely</h1>
                 <p className={styles.desc}>
-                    Stop worrying about your packages and start shipping with confidence. Easily access our shipping services and select the package type, with unmatched prices and reliable delivery, we have customized shipping stages and tracking, so you can repeat and perfect your shipping process and reach your customers seamlessly.
-                    <h1>ARE YOU A SHIPPER?</h1>
-                    We promise to help you ship your packages securely and on time.
+                Stop struggling with language barriers and start communicating with ease. Easily access our translation services and provide the necessary details, including the origin language, current location, contact information, spoken language, target language, and the story or text that needs to be translated. With our team of skilled translators, we ensure accurate and reliable translations, helping you connect with people across different cultures and languages.
+
+                <h1>ARE YOU A TRAVELER OR EXPAT?</h1>
+                We promise to help you communicate effectively, no matter where you are or what language you need.
                 </p>
                 <div className={styles.boxes}>
                     <div className={styles.box}>

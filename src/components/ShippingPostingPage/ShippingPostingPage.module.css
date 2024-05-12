@@ -1,69 +1,73 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    background-color: #0d0c22;
-    color: white;
-    gap: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #0d0c22;
+  color: white;
+  gap: 10rem;
+}
+
+.formContainer {
+  width: 40%;
+  background-color: #2d2b42;
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textContainer {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  text-align: center;
+}
+
+.title {
+  font-size: 54px;
+  margin: 0 auto;
+}
+
+.desc {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.boxes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+.box h1 {
+  color: #3673fd;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .boxes {
+    flex-direction: column;
+    gap: 2rem;
   }
 
   .formContainer {
-    width: 40%;
-    background-color: #2d2b42;
-    border-radius: 8px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
   }
 
   .textContainer {
-    width: 55%;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    text-align: center;
+    width: 100%;
   }
-
-  .title {
-    font-size: 54px;
-    margin: 0 auto;
-  }
-
-  .desc {
-    font-size: 20px;
-    font-weight: 300;
-  }
-
-  .boxes {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .box {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-  }
-
-  .box h1 {
-    color: #3673fd;
-  }
-
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .formContainer {
-      width: 100%;
-    }
-
-    .textContainer {
-      width: 100%;
-    }
-  }
+}
