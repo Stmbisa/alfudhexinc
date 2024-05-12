@@ -72,7 +72,7 @@ export const images = [
     id: 5,
     src: '/author.png',
     title: 'Translation and Interpretation Services',
-    desc: "<h3> We Make Sure That You're Understood </h3><br />Our team completes certified translations of a number of different documents into more than 150 languages. Especially, We perform accurate translation of:\<ul><li><b>- Birth certificates</b></li><li><b>- Diplomas</b></li><li><b>- Legal documents</b></li><li><b>- Education and school documents</b></li><li><b>-Many more</b></li></ul> ",
+    desc: "<h3> We Make Sure That You're Understood </h3><br />Our team completes certified translations of a number of different documents into more than 150 languages. Especially, We perform accurate translation of:<ul><li><b>- Birth certificates</b></li><li><b>- Diplomas</b></li><li><b>- Legal documents</b></li><li><b>- Education and school documents</b></li><li><b>-Many more</b></li></ul> ",
 
     buttons: [
       { label: 'Browse more', href: '/services/translation' },
