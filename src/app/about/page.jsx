@@ -2,8 +2,8 @@ import Image from "next/image";
 import styles from "./about.module.css";
 
 export const metadata = {
-  title: "About Page",
-  description: "About description",
+  title: "alfudhex About Page",
+  description: "alfudhex is platform that helpes you solve all your immigrations issues at the lowest prices,from hemping you get asylum or visa, to telling your story in the best language possible (narrative chrincles)to sending your package anywhere in the world, to finding you a job!we have a vast team of consultants.",
 };
 
 

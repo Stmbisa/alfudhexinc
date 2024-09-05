@@ -23,10 +23,19 @@ export const GET = async (request) => {
 
 export const POST = middleware(async (request) => {
   try {
-    connectToDb();
+    console.log("API route reached");
+    await connectToDb();
+    console.log("Connected to database");
     const userId = await getUserIdFromRequest(request);
-    // Get data from request body (ensure correct shape)
-    const { category, title, description, location, pricePerHour, estimatedHours } = JSON.parse(request.body);
+    console.log("User ID:", userId);
+    const {
+      category,
+      title,
+      description,
+      location,
+      pricePerHour,
+      estimatedHours
+    } = await request.json();
 
     const newJob = await Job.create({
       category,
@@ -38,16 +47,14 @@ export const POST = middleware(async (request) => {
       userId
     });
 
-    // Create initial entry into job tracking
     await JobTracking.create({
       jobId: newJob._id,
-      bookedBy: userId // Initially booked by the creator,
-      // will make sure this line doesnt cause errors of already booked
+      bookedBy: userId
     });
 
     return NextResponse.json(newJob);
   } catch (err) {
-    console.log(err);
-    throw new Error("Failed to create job!");
+    console.error("API Route Error:", err);
+    return NextResponse.json({ error: "Failed to create job!" }, { status: 500 });
   }
 });

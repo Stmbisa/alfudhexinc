@@ -1,23 +1,25 @@
 .homeContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 5rem;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
 
-  .subtitle {
-    color: #3673fd;
-    margin-bottom: 1rem;
-    text-align: center;
-    font-size: 54px;
-  }
+.subtitle {
+  color: var(--accent1);
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 54px;
+}
 
-  .sliderContainer {
-    margin: 0 auto;
-    padding: 20px;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
+.sliderContainer {
+  margin: 0 auto;
+  padding: 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
 
-  .jobPostingContainer {
-
-  }
+.jobPostingContainer {
+  background-color: var(--bgSoft);
+  padding: 2rem;
+  border-radius: 1rem;
+}
